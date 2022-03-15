@@ -181,7 +181,17 @@ type Listener struct {
 	// same port, subject to the Listener compatibility rules.
 	//
 	// Support: Core
+	//
+	// +optional
 	Port PortNumber `json:"port"`
+
+	// PortRange is a range of network ports, where a listener using the next
+	// available port should be allocated to accepted routes.
+	//
+	// Support: Core
+	//
+	// +optional
+	PortRange *PortRange `json:"portRange,omitempty"`
 
 	// Protocol specifies the network protocol this listener expects to receive.
 	//
@@ -596,6 +606,9 @@ const (
 type ListenerStatus struct {
 	// Name is the name of the Listener that this status corresponds to.
 	Name SectionName `json:"name"`
+
+	// Port is the port of the Listener that this status corresponds to.
+	Port PortNumber `json:"port"`
 
 	// SupportedKinds is the list indicating the Kinds supported by this
 	// listener. This MUST represent the kinds an implementation supports for

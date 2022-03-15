@@ -151,6 +151,12 @@ type CommonRouteSpec struct {
 // +kubebuilder:validation:Maximum=65535
 type PortNumber int32
 
+// PortRange defines a range of network ports.
+type PortRange struct {
+	Start PortNumber `json:"start"`
+	End   PortNumber `json:"end"`
+}
+
 // BackendRef defines how a Route should forward a request to a Kubernetes
 // resource.
 //

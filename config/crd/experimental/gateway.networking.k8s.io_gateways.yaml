@@ -300,6 +300,27 @@ spec:
                       maximum: 65535
                       minimum: 1
                       type: integer
+                    portRange:
+                      description: "PortRange is a range of network ports, where a
+                        listener using the next available port should be allocated
+                        to accepted routes. \n Support: Core"
+                      properties:
+                        end:
+                          description: PortNumber defines a network port.
+                          format: int32
+                          maximum: 65535
+                          minimum: 1
+                          type: integer
+                        start:
+                          description: PortNumber defines a network port.
+                          format: int32
+                          maximum: 65535
+                          minimum: 1
+                          type: integer
+                      required:
+                      - end
+                      - start
+                      type: object
                     protocol:
                       description: "Protocol specifies the network protocol this listener
                         expects to receive. \n Support: Core"
@@ -427,7 +448,6 @@ spec:
                       type: object
                   required:
                   - name
-                  - port
                   - protocol
                   type: object
                 maxItems: 64
@@ -661,6 +681,13 @@ spec:
                       minLength: 1
                       pattern: ^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$
                       type: string
+                    port:
+                      description: Port is the port of the Listener that this status
+                        corresponds to.
+                      format: int32
+                      maximum: 65535
+                      minimum: 1
+                      type: integer
                     supportedKinds:
                       description: "SupportedKinds is the list indicating the Kinds
                         supported by this listener. This MUST represent the kinds
@@ -696,6 +723,7 @@ spec:
                   - attachedRoutes
                   - conditions
                   - name
+                  - port
                   - supportedKinds
                   type: object
                 maxItems: 64
